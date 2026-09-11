@@ -1,6 +1,6 @@
 # 🚀 Capita | Personal Finance Tracker
 
-**Capita** is a high-performance, frontend-only financial dashboard designed to showcase advanced React patterns, state management, and data visualization.
+**Capita** is a high-performance, client-side financial dashboard designed to showcase modern React patterns, resilient state management, precision math calculations, and interactive data visualization.
 
 ---
 
@@ -8,72 +8,83 @@
 
 | Category | Technology | Purpose |
 | :--- | :--- | :--- |
-| **Framework** | **React (Vite)** | Modern, fast UI library. |
-| **Styling** | **Tailwind CSS** | Utility-first responsive design. |
-| **State** | **Zustand** | Global state for transactions. |
-| **Charts** | **Recharts** | Dynamic SVG data visualization. |
-| **Icons** | **Lucide-React** | Clean, consistent UI iconography. |
-| **Animation** | **Framer Motion** | Smooth transitions and interactions. |
+| **Framework** | **React 18 (Vite 5)** | Modern, blazing-fast UI library & bundler. |
+| **Styling** | **Tailwind CSS v4** | Utility-first responsive design with dark mode styling. |
+| **State** | **Zustand (`persist`)** | Single source of truth with automated `localStorage` hydration. |
+| **Charts** | **Recharts** | Dynamic SVG data visualizations for spending and cashflow. |
+| **Icons** | **Lucide React** | Clean, modern iconography across all components. |
+| **Animation** | **Framer Motion** | Micro-interactions and smooth UI transitions. |
 
 ---
 
 ## 🏗️ Architecture
 
-To ensure scalability and clean code, **Capita** follows a modular feature-based structure:
+Capita follows a modular feature-based folder structure:
 
-* 📂 `src/components` — Reusable UI atoms (Buttons, Inputs, Cards).
-* 📂 `src/store` — The **Zustand** central nervous system (`useFinanceStore.js`).
-* 📂 `src/hooks` — Custom hooks for `localStorage` persistence.
-* 📂 `src/utils` — Pure functions for currency and date formatting.
+* 📂 `src/components/common` — Reusable UI primitives (`Button`, `Input`, `Select`, `Modal`, `Card`, `Badge`).
+* 📂 `src/components/dashboard` — Dashboard widgets (`Header`, `SummaryCards`, `StatCard`, `BudgetCard`, `QuickAddModal`).
+* 📂 `src/components/transactions` — Transaction ledger (`TransactionList`, `TransactionItem`).
+* 📂 `src/components/charts` — Recharts visualizers (*Phase 2*).
+* 📂 `src/store` — Central **Zustand** store (`useFinanceStore.js`) with persistence.
+* 📂 `src/utils` — Precision math (`currency.js`), date helpers (`date.js`), category definitions, and seed data.
 
 ---
 
-## 🧠 Core Logic Flow (No-Backend)
+## 🧠 Core Logic & Engineering Highlights
 
-Since this is a static deployment on GitHub Pages, the "backend" is simulated via the browser:
-
-* **Persistence:** All data is synced to `Window.localStorage`.
-* **Calculations:** Totals are computed in real-time using JavaScript `reduce()` methods.
-* **Unique IDs:** Transactions use `crypto.randomUUID()` for unique keys.
+* **Zero-Backend Persistence:** All state automatically hydrates from and synchronizes to `localStorage`.
+* **Safe Currency Arithmetic:** Floating-point math anomalies (e.g. `0.1 + 0.2`) are safely handled via dedicated rounding and summation helpers.
+* **Master Roadmap & Context:** See [`PROJECT_PLAN.md`](./PROJECT_PLAN.md) and [`AGENTS.md`](./AGENTS.md) for full engineering specifications.
 
 ---
 
 ## 📈 Implementation Roadmap
 
-### 🟩 Phase 1: The Foundation
-- [x] Initialize Vite + Tailwind CSS.
-- [ ] Create the **Zustand Store** for CRUD operations.
-- [ ] Build the responsive 3-column Dashboard layout.
-- [ ] Implement the `Add Transaction` modal/form.
+### 🟩 Phase 1: Foundation & Core CRUD
+- [x] Initialize Vite + Tailwind CSS v4.
+- [x] Create the **Zustand Store** with persistence and precision math utilities.
+- [x] Build the responsive Dashboard layout with Metric Cards & Budget Progress.
+- [x] Implement the `Add Transaction` modal/form with validation.
+- [x] Build the Transaction History ledger with filters, search, and delete actions.
 
 ### 🟨 Phase 2: Data Visualization
-- [ ] Integrate **Recharts** for "Spending by Category" (Pie Chart).
-- [ ] Implement "Monthly Trends" (Area/Bar Chart).
-- [ ] Add **Dark Mode** support using Tailwind's `dark` class.
+- [ ] Integrate **Recharts** for "Spending by Category" (Donut/Pie Chart).
+- [ ] Implement "Income vs Expenses / Cashflow Trends" (Area/Bar Chart).
+- [ ] Add interactive tooltips, legends, and empty state fallbacks.
 
 ### 🟦 Phase 3: The "Senior" Polish
 - [ ] **Export to CSV:** Allow users to download their financial data.
-- [ ] **Search & Filter:** Advanced filtering by date range and category.
-- [ ] **Framer Motion:** Add entrance animations for list items.
+- [ ] **JSON Backup & Restore:** Export and import full transaction state.
+- [ ] **Framer Motion:** Micro-animations and smooth list insertions.
 
 ---
 
 ## 💡 Technical Showcases for Recruiters
 
 > [!TIP]
-> **Highlight these features in your interview:**
-> * **State Management:** Explain why you chose Zustand over Context API for performance.
-> * **Data Integrity:** Show how you handle floating-point math for currency.
-> * **UX/UI:** Discuss the mobile-first approach and accessibility (A11y).
+> **Key Architecture Discussions:**
+> * **State Management:** Why Zustand with `persist` middleware was chosen over Context API for performance and reduced re-renders.
+> * **Data Integrity:** How floating-point math is handled safely for financial calculations.
+> * **Git & Branching Workflow:** Feature-branch strategy (`feat/phase-...`) with Conventional Commits.
 
 ---
 
-## 🏁 Getting Started
+## 🏁 Getting Started Locally
 
-To run **Capita** locally, follow these steps:
-
-### 1. Clone & Install
 ```bash
-git clone [https://github.com/your-username/capita.git](https://github.com/your-username/capita.git)
-cd capita
+# 1. Clone repository
+git clone https://github.com/christian-tapales/Capita.git
+cd Capita
+
+# 2. Install dependencies
 npm install
+
+# 3. Start development server
+npm run dev
+
+# 4. Build for production
+npm run build
+
+# 5. Run linter
+npm run lint
+```
