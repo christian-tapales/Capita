@@ -54,3 +54,23 @@ export function formatCurrency(amount, currencyCode = 'USD') {
     return `${currencyInfo.symbol}${rounded.toFixed(2)}`;
   }
 }
+
+/**
+ * Formats an amount to compact format (e.g. $1.5k, $2M) for charts and compact UI
+ * @param {number} amount 
+ * @param {string} currencyCode 
+ * @returns {string}
+ */
+export function formatCompactCurrency(amount, currencyCode = 'USD') {
+  const currencyInfo = CURRENCY_MAP[currencyCode] || CURRENCY_MAP.USD;
+  const absAmount = Math.abs(amount);
+  const sign = amount < 0 ? '-' : '';
+
+  if (absAmount >= 1_000_000) {
+    return `${sign}${currencyInfo.symbol}${(absAmount / 1_000_000).toFixed(1)}M`;
+  }
+  if (absAmount >= 1_000) {
+    return `${sign}${currencyInfo.symbol}${(absAmount / 1_000).toFixed(1)}k`;
+  }
+  return `${sign}${currencyInfo.symbol}${absAmount.toFixed(0)}`;
+}

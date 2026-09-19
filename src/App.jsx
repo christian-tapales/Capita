@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useFinanceStore } from './store/useFinanceStore';
 import { Header } from './components/dashboard/Header';
 import { SummaryCards } from './components/dashboard/SummaryCards';
 import { BudgetCard } from './components/dashboard/BudgetCard';
+import { CategoryPieChart } from './components/charts/CategoryPieChart';
+import { CashflowTrendChart } from './components/charts/CashflowTrendChart';
 import { TransactionList } from './components/transactions/TransactionList';
 import { QuickAddModal } from './components/dashboard/QuickAddModal';
 
 function App() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const theme = useFinanceStore((state) => state.theme);
+
+  // Synchronize document theme class and attributes
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col antialiased">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
       {/* Top Navbar */}
       <Header onOpenAddModal={() => setIsAddModalOpen(true)} />
 
@@ -20,12 +35,18 @@ function App() {
           <SummaryCards />
         </section>
 
-        {/* 2. Monthly Budget Progress */}
+        {/* 2. Visual Analytics Charts Grid */}
+        <section aria-label="Visual Analytics" className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <CashflowTrendChart />
+          <CategoryPieChart />
+        </section>
+
+        {/* 3. Monthly Budget Progress */}
         <section aria-label="Budget Progress">
           <BudgetCard />
         </section>
 
-        {/* 3. Recent Transactions & Ledger */}
+        {/* 4. Recent Transactions & Ledger */}
         <section aria-label="Transactions Ledger">
           <TransactionList onOpenAddModal={() => setIsAddModalOpen(true)} />
         </section>
