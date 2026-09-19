@@ -60,6 +60,23 @@ export const useFinanceStore = create(
         set({ transactions: [] });
       },
 
+      importBackupData: (backupData) => {
+        if (!backupData || !Array.isArray(backupData.transactions)) return;
+        set({
+          transactions: backupData.transactions,
+          monthlyBudget: backupData.monthlyBudget || 3000,
+          currency: backupData.currency || 'USD',
+          theme: backupData.theme || 'dark',
+        });
+      },
+
+      batchAddTransactions: (newTransactions) => {
+        if (!Array.isArray(newTransactions)) return;
+        set((state) => ({
+          transactions: [...newTransactions, ...state.transactions],
+        }));
+      },
+
       setCurrency: (currency) => {
         set({ currency });
       },

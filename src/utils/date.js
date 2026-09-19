@@ -39,3 +39,21 @@ export function isCurrentMonth(dateString) {
   const [year, month] = dateString.split('-').map(Number);
   return today.getFullYear() === year && today.getMonth() + 1 === month;
 }
+
+export function isCurrentYear(dateString) {
+  if (!dateString) return false;
+  const today = new Date();
+  const [year] = dateString.split('-').map(Number);
+  return today.getFullYear() === year;
+}
+
+export function isWithinLastNDays(dateString, days = 30) {
+  if (!dateString) return false;
+  const [year, month, day] = dateString.split('-').map(Number);
+  const targetDate = new Date(year, month - 1, day);
+  const today = new Date();
+  const diffTime = today.getTime() - targetDate.getTime();
+  const diffDays = diffTime / (1000 * 60 * 60 * 24);
+  return diffDays >= 0 && diffDays <= days;
+}
+
