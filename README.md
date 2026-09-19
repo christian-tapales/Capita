@@ -54,10 +54,11 @@ Capita follows a modular feature-based folder structure:
 - [x] Dark / Light theme toggler with persistent state.
 
 ### 🟦 Phase 3: The "Senior" Polish
-- [ ] **Transaction Search & Multi-Filters:** Instant search by title/notes and category/type filter chips.
-- [ ] **Export to CSV:** Allow users to download their financial data.
-- [ ] **JSON Backup & Restore:** Export and import full transaction state.
-- [ ] **Framer Motion:** Micro-animations and smooth list insertions.
+- [x] **Transaction Search & Multi-Filters:** Instant search by title/category/notes, date range filtering, category selectors, and custom sorting.
+- [x] **Export to CSV:** Client-side RFC-compliant CSV generator for all or filtered transactions.
+- [x] **JSON Backup & Restore:** Complete export and schema-validated import of transaction state.
+- [x] **Framer Motion:** Spring modal animations, backdrop blur transitions, and animated list item insertions/removals.
+- [x] **Data Safety:** Confirmation dialogs for demo reset and ledger clearing.
 
 ---
 

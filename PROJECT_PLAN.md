@@ -157,21 +157,21 @@ Phase 1: Foundation & CRUD ───► Phase 2: Visualizations ───► Pha
 ---
 
 ### 🟦 Phase 3: Senior Polish & Advanced Features
-- [ ] **Search & Multi-Filter Engine:**
-  - Real-time search by title/notes.
-  - Filter by category, type (all/income/expense), and date range (This Month, Last 30 Days, All Time).
+- [x] **Search & Multi-Filter Engine:**
+  - Real-time search by title/category/notes.
+  - Filter by category, type (all/income/expense), and date range (This Month, Last 30 Days, This Year, All Time).
   - Sort by date (newest/oldest) and amount (highest/lowest).
-- [ ] **CSV Export & Data Backup:**
-  - Client-side CSV generator downloading current or filtered transactions.
-  - JSON backup download and file-upload restore tool.
-- [ ] **Demo Seed Data & Safety Tools:**
-  - "Load Demo Data" button for recruiters/testers to populate 15+ realistic entries instantly.
-  - "Reset Data" confirmation modal.
-- [ ] **Framer Motion Micro-Interactions:**
-  - Animated number counters for balance cards.
-  - Smooth entrance animations for transaction items and modal overlays.
-- [ ] **Mobile & Tablet Optimization:**
-  - Fully responsive collapsible layout tailored for smartphone viewports.
+- [x] **CSV Export & Data Backup:**
+  - Client-side CSV generator downloading current, filtered, or all transactions.
+  - JSON backup download and file-upload restore tool with schema validation.
+- [x] **Demo Seed Data & Safety Tools:**
+  - "Load Demo Data" button for recruiters/testers to populate realistic entries instantly.
+  - "Clear All Data" and "Reset Demo" confirmation modals.
+- [x] **Framer Motion Micro-Interactions:**
+  - Smooth spring modal entrance animations with backdrop fade.
+  - Smooth animated removal and insertion of transaction ledger entries.
+- [x] **Mobile & Tablet Optimization:**
+  - Fully responsive layout with collapsible filter controls on smaller screens.
 
 ---
 
