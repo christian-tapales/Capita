@@ -145,13 +145,13 @@ Phase 1: Foundation & CRUD ───► Phase 2: Visualizations ───► Pha
 ---
 
 ### 🟨 Phase 2: Data Visualization & Analytics
-- [ ] **Recharts Integration:**
+- [x] **Recharts Integration:**
   - `CategoryPieChart.jsx`: Donut chart showing expense distribution with interactive hover tooltips and category legends.
   - `CashflowTrendChart.jsx`: Smooth Area/Bar chart comparing monthly Income vs Expense trends.
-- [ ] **Budget Progress Tracker (`BudgetProgress.jsx`):**
+- [x] **Budget Progress Tracker (`BudgetCard.jsx`):**
   - Dynamic progress bar comparing current monthly expenses against user's defined budget limit.
   - Visual status alerts: Safe (Green), Caution (>75% Yellow), Over-budget (>100% Red).
-- [ ] **Dark / Light Mode System:**
+- [x] **Dark / Light Mode System:**
   - Smooth theme toggling with `localStorage` persistence and system color-scheme sync.
 
 ---
@@ -189,12 +189,12 @@ Use this checklist during development to ensure we never deviate from our plan:
 
 | Milestone | Checkpoints for Verification | Status |
 | :--- | :--- | :--- |
-| **State Persistence** | Refreshing browser retains all added/edited transactions via Zustand `persist`. | ⏳ Pending |
-| **Financial Accuracy** | Adding $0.10 + $0.20 results in exactly $0.30 with no floating point errors. | ⏳ Pending |
-| **Form Safety** | Empty fields, zero or negative amounts cannot be submitted. | ⏳ Pending |
-| **Responsive UI** | Dashboard operates smoothly on Mobile (375px), Tablet (768px), and Desktop (1280px+). | ⏳ Pending |
-| **Visual Charts** | Empty state charts render clean placeholders; populated states render accurately. | ⏳ Pending |
-| **Zero Console Errors** | React StrictMode, ESLint, and Vite production builds complete with 0 warnings/errors. | ⏳ Pending |
+| **State Persistence** | Refreshing browser retains all added/edited transactions via Zustand `persist`. | ✅ Verified |
+| **Financial Accuracy** | Adding $0.10 + $0.20 results in exactly $0.30 with no floating point errors. | ✅ Verified |
+| **Form Safety** | Empty fields, zero or negative amounts cannot be submitted. | ✅ Verified |
+| **Responsive UI** | Dashboard operates smoothly on Mobile (375px), Tablet (768px), and Desktop (1280px+). | ✅ Verified |
+| **Visual Charts** | Empty state charts render clean placeholders; populated states render accurately. | ✅ Verified |
+| **Zero Console Errors** | React StrictMode, ESLint, and Vite production builds complete with 0 warnings/errors. | ✅ Verified |
 
 ---
 

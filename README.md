@@ -48,11 +48,13 @@ Capita follows a modular feature-based folder structure:
 - [x] Build the Transaction History ledger with filters, search, and delete actions.
 
 ### 🟨 Phase 2: Data Visualization
-- [ ] Integrate **Recharts** for "Spending by Category" (Donut/Pie Chart).
-- [ ] Implement "Income vs Expenses / Cashflow Trends" (Area/Bar Chart).
-- [ ] Add interactive tooltips, legends, and empty state fallbacks.
+- [x] Integrate **Recharts** for "Spending by Category" (Donut/Pie Chart) with interactive category breakdown and time range filters.
+- [x] Implement "Income vs Expenses / Cashflow Trends" (Multi-series Bar Chart) over 6 months with net cash flow calculations.
+- [x] Add custom glassmorphism tooltips, category legend cards, and zero-data empty state fallbacks.
+- [x] Dark / Light theme toggler with persistent state.
 
 ### 🟦 Phase 3: The "Senior" Polish
+- [ ] **Transaction Search & Multi-Filters:** Instant search by title/notes and category/type filter chips.
 - [ ] **Export to CSV:** Allow users to download their financial data.
 - [ ] **JSON Backup & Restore:** Export and import full transaction state.
 - [ ] **Framer Motion:** Micro-animations and smooth list insertions.
