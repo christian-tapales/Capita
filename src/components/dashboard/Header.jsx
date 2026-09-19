@@ -1,13 +1,15 @@
 import React from 'react';
 import { useFinanceStore } from '../../store/useFinanceStore';
 import { Button } from '../common/Button';
-import { Plus, Wallet, RotateCcw, DollarSign } from 'lucide-react';
+import { Plus, Wallet, RotateCcw, DollarSign, Sun, Moon } from 'lucide-react';
 import { CURRENCY_MAP } from '../../utils/currency';
 
 export function Header({ onOpenAddModal }) {
   const currency = useFinanceStore((state) => state.currency);
   const setCurrency = useFinanceStore((state) => state.setCurrency);
   const resetToSampleData = useFinanceStore((state) => state.resetToSampleData);
+  const theme = useFinanceStore((state) => state.theme);
+  const toggleTheme = useFinanceStore((state) => state.toggleTheme);
 
   const todayFormatted = new Intl.DateTimeFormat('en-US', {
     weekday: 'short',
@@ -37,7 +39,15 @@ export function Header({ onOpenAddModal }) {
           </div>
 
           {/* Mobile Add button */}
-          <div className="sm:hidden">
+          <div className="sm:hidden flex items-center gap-2">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-colors"
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-400" />}
+            </button>
             <Button size="sm" onClick={onOpenAddModal} icon={Plus}>
               Add
             </Button>
@@ -62,6 +72,20 @@ export function Header({ onOpenAddModal }) {
             </select>
             <DollarSign className="absolute right-2.5 w-3.5 h-3.5 pointer-events-none text-slate-400" />
           </div>
+
+          {/* Theme Toggle for Desktop */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="hidden sm:flex items-center justify-center p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-colors"
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-amber-400" />
+            ) : (
+              <Moon className="w-4 h-4 text-indigo-400" />
+            )}
+          </button>
 
           {/* Reset sample data button */}
           <Button
