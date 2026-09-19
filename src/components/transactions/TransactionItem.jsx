@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useFinanceStore } from '../../store/useFinanceStore';
 import { formatCurrency } from '../../utils/currency';
 import { formatDate } from '../../utils/date';
@@ -50,7 +51,14 @@ export function TransactionItem({ transaction }) {
   const IconComponent = ICON_COMPONENTS[meta.icon] || Tag;
 
   return (
-    <div className="group flex items-center justify-between p-3.5 sm:p-4 rounded-xl bg-slate-900/60 hover:bg-slate-800/60 border border-slate-800/60 hover:border-slate-700/80 transition-all duration-200">
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 8, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.15 } }}
+      transition={{ duration: 0.2 }}
+      className="group flex items-center justify-between p-3.5 sm:p-4 rounded-xl bg-slate-900/60 hover:bg-slate-800/60 border border-slate-800/60 hover:border-slate-700/80 transition-all duration-200"
+    >
       {/* Left info */}
       <div className="flex items-center gap-3.5 min-w-0">
         {/* Category Icon */}
@@ -101,11 +109,11 @@ export function TransactionItem({ transaction }) {
           type="button"
           onClick={() => deleteTransaction(transaction.id)}
           title="Delete transaction"
-          className="opacity-0 group-hover:opacity-100 focus:opacity-100 p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-all duration-150"
+          className="opacity-0 group-hover:opacity-100 focus:opacity-100 p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-all duration-150 cursor-pointer"
         >
           <Trash2 className="w-4 h-4" />
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }

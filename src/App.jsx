@@ -7,9 +7,11 @@ import { CategoryPieChart } from './components/charts/CategoryPieChart';
 import { CashflowTrendChart } from './components/charts/CashflowTrendChart';
 import { TransactionList } from './components/transactions/TransactionList';
 import { QuickAddModal } from './components/dashboard/QuickAddModal';
+import { DataManagementModal } from './components/dashboard/DataManagementModal';
 
 function App() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isDataModalOpen, setIsDataModalOpen] = useState(false);
   const theme = useFinanceStore((state) => state.theme);
 
   // Synchronize document theme class and attributes
@@ -26,7 +28,10 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
       {/* Top Navbar */}
-      <Header onOpenAddModal={() => setIsAddModalOpen(true)} />
+      <Header
+        onOpenAddModal={() => setIsAddModalOpen(true)}
+        onOpenDataModal={() => setIsDataModalOpen(true)}
+      />
 
       {/* Main Content Dashboard */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -57,10 +62,15 @@ function App() {
         <p>Capita Personal Finance Tracker • High Performance Client-Side Architecture</p>
       </footer>
 
-      {/* Add Transaction Modal */}
+      {/* Modals */}
       <QuickAddModal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
+      />
+
+      <DataManagementModal
+        isOpen={isDataModalOpen}
+        onClose={() => setIsDataModalOpen(false)}
       />
     </div>
   );

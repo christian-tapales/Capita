@@ -1,10 +1,10 @@
 import React from 'react';
 import { useFinanceStore } from '../../store/useFinanceStore';
 import { Button } from '../common/Button';
-import { Plus, Wallet, RotateCcw, DollarSign, Sun, Moon } from 'lucide-react';
+import { Plus, Wallet, RotateCcw, DollarSign, Sun, Moon, Database } from 'lucide-react';
 import { CURRENCY_MAP } from '../../utils/currency';
 
-export function Header({ onOpenAddModal }) {
+export function Header({ onOpenAddModal, onOpenDataModal }) {
   const currency = useFinanceStore((state) => state.currency);
   const setCurrency = useFinanceStore((state) => state.setCurrency);
   const resetToSampleData = useFinanceStore((state) => state.resetToSampleData);
@@ -38,8 +38,16 @@ export function Header({ onOpenAddModal }) {
             </div>
           </div>
 
-          {/* Mobile Add button */}
+          {/* Mobile Actions */}
           <div className="sm:hidden flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onOpenDataModal}
+              className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-colors"
+              title="Data backup & export"
+            >
+              <Database className="w-4 h-4 text-indigo-400" />
+            </button>
             <button
               type="button"
               onClick={toggleTheme}
@@ -77,7 +85,7 @@ export function Header({ onOpenAddModal }) {
           <button
             type="button"
             onClick={toggleTheme}
-            className="hidden sm:flex items-center justify-center p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-colors"
+            className="hidden sm:flex items-center justify-center p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-colors cursor-pointer"
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? (
@@ -87,6 +95,18 @@ export function Header({ onOpenAddModal }) {
             )}
           </button>
 
+          {/* Data Portability / Backup CTA */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onOpenDataModal}
+            icon={Database}
+            title="Export CSV, backup JSON, or restore data"
+            className="hidden sm:inline-flex text-xs text-slate-300 hover:text-white"
+          >
+            Backup & Data
+          </Button>
+
           {/* Reset sample data button */}
           <Button
             variant="ghost"
@@ -94,7 +114,7 @@ export function Header({ onOpenAddModal }) {
             onClick={resetToSampleData}
             icon={RotateCcw}
             title="Reset to sample demo data"
-            className="text-xs text-slate-400 hover:text-slate-200"
+            className="hidden sm:inline-flex text-xs text-slate-400 hover:text-slate-200"
           >
             Reset Demo
           </Button>
